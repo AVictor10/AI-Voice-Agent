@@ -1,0 +1,16 @@
+# Ignore Python cache and bytecode
+__pycache__/
+*.pyc
+
+# Ignore env file
+.env
+
+# Ignore uploaded files
+uploads/
+
+# Optional: ignore VSCode settings
+.vscode/
+
+# .gitignore
+venv/
+*.env

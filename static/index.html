@@ -1,0 +1,54 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Voice Agent - Day 3</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h2>🎤 AI Voice Generator</h2>
+  <input type="text" id="textInput" placeholder="Enter your text here..." />
+  <button onclick="generateAudio()">Generate Voice</button>
+
+  <audio id="audioPlayer" controls style="display:none;"></audio>
+
+  <script src="script.js"></script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Day 4 - AI Voice Agent</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1 class="header">Day 4: Creating AI Voice Agents</h1>
+
+    <div class="card">
+      <h2>Day 4: Generate Speech</h2>
+      <p>Enter some text and hear it in a generated voice!</p>
+      <input type="text" id="text-input" placeholder="Type something..." />
+      <div class="audio-align">
+        <audio id="audio-player" controls></audio>
+        <button id="submit-btn">Generate Voice</button>
+     </div>
+    </div>
+    <div class="card">
+      <h2>Day 4: Echo Bot</h2>
+      <p>Record your voice and play it back instantly!</p>
+    
+      <button id="start-recording">Start Recording</button>
+      <button id="stop-recording" disabled>Stop Recording</button>
+      <audio id="recorded-audio" controls style="margin-top: 10px;"></audio>
+    </div>    
+
+  </div>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>

@@ -7,7 +7,10 @@ from murf import Murf
 from dotenv import load_dotenv
 from fastapi import UploadFile, File
 from pathlib import Path
+from datetime import datetime
+import assemblyai as aai
 import os
+import uuid
 
 load_dotenv()
 
@@ -47,21 +50,47 @@ async def generate_audio(request: TextRequest):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-
-
 UPLOAD_DIR = Path("uploads")
 UPLOAD_DIR.mkdir(exist_ok=True)
 
 @app.post("/upload-audio/")
 async def upload_audio(file: UploadFile = File(...)):
-    file_path = UPLOAD_DIR / file.filename
+    
+    timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
+    unique_id = uuid.uuid4().hex[:6]
+    extension = file.filename.split(".")[-1]
+    new_filename = f"audio_{timestamp}_{unique_id}.{extension}"
+
+    file_path = UPLOAD_DIR / new_filename
     contents = await file.read()
 
     with open(file_path, "wb") as f:
         f.write(contents)
 
     return {
-        "filename": file.filename,
+        "filename": new_filename,
         "content_type": file.content_type,
         "size": len(contents)
     }
+
+#Transcribe File Logic
+
+aai.settings.api_key = os.getenv("ASSEMBLYAI_API_KEY")
+
+@app.post("/transcribe/file")
+async def transcribe_file(file: UploadFile = File(...)):
+    try:
+        # Read contents of the uploaded file
+        audio_bytes = await file.read()
+
+        # Use AssemblyAI SDK to transcribe directly from bytes
+        transcriber = aai.Transcriber()
+        transcript = transcriber.transcribe(audio_bytes)
+
+        if transcript.status == "error":
+            raise RuntimeError(f"Transcription failed: {transcript.error}")
+
+        return {"transcript": transcript.text}
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))

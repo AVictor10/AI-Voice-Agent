@@ -42,10 +42,14 @@ document.addEventListener("DOMContentLoaded", () => {
 //ECHO BOT logic
 let mediaRecorder;
 let audioChunks = [];
+let recordedBlob;
 
+// Buttons
 const startBtn = document.getElementById("start-recording");
 const stopBtn = document.getElementById("stop-recording");
+const uploadBtn = document.getElementById("upload-audio");
 const audioPlayer = document.getElementById("recorded-audio");
+const statusMsg = document.getElementById("upload-status");
 
 startBtn.addEventListener("click", async () => {
   const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -58,8 +62,8 @@ startBtn.addEventListener("click", async () => {
   };
 
   mediaRecorder.onstop = () => {
-    const audioBlob = new Blob(audioChunks, { type: "audio/wav" });
-    const audioUrl = URL.createObjectURL(audioBlob);
+    recordedBlob = new Blob(audioChunks, { type: "audio/webm" });
+    const audioUrl = URL.createObjectURL(recordedBlob);
     audioPlayer.src = audioUrl;
     audioPlayer.play();
   };
@@ -70,9 +74,67 @@ startBtn.addEventListener("click", async () => {
 });
 
 stopBtn.addEventListener("click", () => {
-  mediaRecorder.stop();
-  startBtn.disabled = false;
-  stopBtn.disabled = true;
+  if (mediaRecorder && mediaRecorder.state !== "inactive") {
+    mediaRecorder.stop();
+    startBtn.disabled = false;
+    stopBtn.disabled = true;
+  }
 });
+
+uploadBtn.addEventListener("click", async () => {
+  if (!recordedBlob) return alert("Please record something first!");
+
+  const formData = new FormData();
+  formData.append("file", recordedBlob, "recording.webm");
+
+  statusMsg.textContent = "Uploading...";
+
+  try {
+    const res = await fetch("http://127.0.0.1:8000/upload-audio/", {
+      method: "POST",
+      body: formData,
+    });
+
+    const data = await res.json();
+    statusMsg.textContent = `✅ Uploaded: ${data.filename} (${data.content_type}), ${data.size} bytes`;
+    //Transcribing
+     transcribeAudio(recordedBlob);
+  } catch (err) {
+    console.error(err);
+    statusMsg.textContent = "❌ Upload failed!";
+  }
+});
+
+
+//Transcribe logic
+
+async function transcribeAudio(blob) {
+    const formData = new FormData();
+    formData.append("file", blob, "recording.wav");
+
+    const statusDiv = document.getElementById("status");
+    const transcriptDiv = document.getElementById("transcript");
+
+    statusDiv.innerText = "Transcribing...";
+
+    try {
+        const response = await fetch("http://localhost:8000/transcribe/file", {
+            method: "POST",
+            body: formData,
+        });
+
+        if (!response.ok) {
+            throw new Error("Transcription failed.");
+        }
+
+        const data = await response.json();
+        statusDiv.innerText = "Transcription complete!";
+        transcriptDiv.innerText = data.transcript;
+    } catch (err) {
+        console.error(err);
+        statusDiv.innerText = "Transcription error.";
+        transcriptDiv.innerText = "";
+    }
+}
 
 

@@ -1,4 +1,4 @@
-   /* * {
+   * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -190,9 +190,9 @@ audio {
   margin-top: 10px;
   color: #ffffff;
   font-weight: bold;
-} */
+}
 
-* {
+/* * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -384,4 +384,4 @@ audio {
   margin-top: 10px;
   color: #ffffff;
   font-weight: bold;
-}
+} */

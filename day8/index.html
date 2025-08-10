@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Day 7 - AI Voice Agent</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1 class="header">Day 7: Creating AI Voice Agents</h1>
+
+    <div class="card">
+      <h2>Day 7: Generate Speech</h2>
+      <p>Enter some text and hear it in a generated voice!</p>
+      <input type="text" id="text-input" placeholder="Type something..." />
+      <div class="audio-align">
+        <audio id="audio-player" controls></audio>
+        <button id="submit-btn">Generate Voice</button>
+     </div>
+    </div>
+    
+    <div class="card">
+       <h1>Echo Bot v2</h1>
+       
+       <!-- ADDED: Voice selection -->
+       <label for="voiceSelect">Voice:</label>
+       <select id="voiceSelect">
+         <option value="en-US-natalie">Natalie</option>
+         <option value="en-US-terrell">Terrell</option>
+         <option value="en-US-sarah">Sarah</option>
+       </select>
+       <br><br>
+       
+       <button id="start-recording">Start Recording</button>
+       <button id="stop-recording" disabled>Stop Recording</button>
+       <button id="upload-audio">Upload Audio</button>
+       <button id="echo-murf" disabled>Echo in Murf Voice</button>
+
+       <br />
+       <audio id="recorded-audio" controls></audio>
+       <p id="upload-status"></p>
+    </div>
+
+    <div class="card">
+      <h2>Transcription</h2>
+      <p id="status">No transcription yet.</p>
+      <p id="transcript" style="font-weight: bold;"></p>
+    </div>
+    
+  </div>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>

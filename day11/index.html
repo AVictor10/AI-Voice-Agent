@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Day 10 - Conversational AI Voice Agent</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1 class="header">🤖 Day 10: Conversational AI Voice Agent</h1>
+    
+    <!-- Session Information -->
+    <div class="session-info">
+      <div>Session ID: <span id="current-session">Loading...</span></div>
+      <div>Conversation Turns: <span id="conversation-turns">0</span> | Total Messages: <span id="total-messages">0</span></div>
+    </div>
+
+    <!-- Session Controls -->
+    <div class="card">
+      <h2>Session Management</h2>
+      <div class="session-controls">
+        <button id="new-session-btn">🔄 New Session</button>
+        <button id="clear-history-btn">🗑️ Clear History</button>
+        <input type="text" id="custom-session-input" placeholder="Enter custom session ID...">
+        <button id="load-session-btn">📂 Load Session</button>
+        <div class="auto-record-indicator" id="auto-record-status">Auto-record: OFF</div>
+      </div>
+    </div>
+    
+    <!-- Main Conversational Interface -->
+    <div class="card conversation-card">
+      <h2>🎙️ Voice Conversation</h2>
+      
+      <!-- Voice Selection -->
+      <div class="controls">
+        <label for="voiceSelect">Voice:</label>
+        <select id="voiceSelect">
+          <option value="en-US-natalie">Natalie (Female)</option>
+          <option value="en-US-terrell">Terrell (Male)</option>
+          <option value="en-US-sarah">Sarah (Female)</option>
+        </select>
+      </div>
+      
+      <!-- Recording Controls -->
+      <div class="controls">
+        <button id="start-recording" class="record-btn">🎤 Start Recording</button>
+        <button id="stop-recording" class="record-btn" disabled>⏹️ Stop Recording</button>
+        <button id="chat-conversation" class="chat-btn" disabled>💬 Send to AI</button>
+      </div>
+      
+      <!-- Audio Players -->
+      <div class="audio-section">
+        <div>
+          <label>Your Recording:</label>
+          <audio id="recorded-audio" controls></audio>
+        </div>
+        <div>
+          <label>AI Response:</label>
+          <audio id="ai-response-audio" controls></audio>
+        </div>
+      </div>
+      
+      <!-- Status Display -->
+      <div id="conversation-status" class="status">Ready to start conversation...</div>
+      
+      <!-- Chat History Display -->
+      <div class="chat-history" id="chat-history">
+        <h3>Conversation History</h3>
+        <div id="history-messages"></div>
+      </div>
+    </div>
+
+    <!-- Legacy Features (Day 9) -->
+    <div class="card">
+      <h2>Day 9: Generate Speech</h2>
+      <p>Enter some text and hear it in a generated voice!</p>
+      <input type="text" id="text-input" placeholder="Type something..." />
+      <div class="audio-align">
+        <audio id="audio-player" controls></audio>
+        <button id="submit-btn">Generate Voice</button>
+     </div>
+    </div>
+    
+    <div class="card">
+       <h2>Echo Bot v2 (Legacy)</h2>
+       
+       <!-- Voice selection -->
+       <label for="voiceSelect2">Voice:</label>
+       <select id="voiceSelect2">
+         <option value="en-US-natalie">Natalie</option>
+         <option value="en-US-terrell">Terrell</option>
+         <option value="en-US-sarah">Sarah</option>
+       </select>
+       <br><br>
+       
+       <button id="start-recording-legacy">Start Recording</button>
+       <button id="stop-recording-legacy" disabled>Stop Recording</button>
+       <button id="upload-audio">Upload Audio</button>
+       <button id="echo-murf" disabled>Echo in Murf Voice</button>
+       <button id="llm-chat" disabled>🤖 Chat with LLM</button>
+       <br />
+       <audio id="recorded-audio-legacy" controls></audio>
+       <p id="upload-status"></p>
+    </div>
+
+    <div class="card">
+      <h2>Transcription</h2>
+      <p id="status">No transcription yet.</p>
+      <p id="transcript" style="font-weight: bold;"></p>
+    </div>
+    
+  </div>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>

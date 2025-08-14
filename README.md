@@ -1,7 +1,8 @@
 # 🎙 AI Voice Agent — 30 Days Challenge
 
-An **end-to-end AI voice assistant** built using FastAPI, modern frontend technologies, and multiple AI APIs.  
-The bot can **listen**, **understand**, **remember conversations**, and **speak back** — just like a human!
+This is my **30-day journey of building a voice-powered AI assistant** from scratch.  
+It listens to what you say, understands it, remembers past chats, and talks back to you in a natural voice.  
+Basically… it’s like chatting with an AI friend that never gets tired.  
 
 ---
 ## ✨Features

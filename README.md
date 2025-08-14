@@ -4,6 +4,23 @@ An **end-to-end AI voice assistant** built using FastAPI, modern frontend techno
 The bot can **listen**, **understand**, **remember conversations**, and **speak back** — just like a human!
 
 ---
+✨ ## Features
+
+🎙️ Voice Input – Record speech and send it directly to the AI for processing.
+
+🧠 LLM Integration – Uses Google Gemini to generate intelligent, context-aware responses.
+
+🗣️ Text-to-Speech Output – Murf API converts LLM responses into natural-sounding speech.
+
+📝 Speech-to-Text – AssemblyAI transcribes user audio for the LLM to process.
+
+💬 Conversation Memory – Chat history stored by session to maintain context across interactions.
+
+⚡ Real-time Interaction – Instant query-response loop for smooth voice conversations.
+
+🌐 Full-Stack Architecture – FastAPI backend with HTML/CSS/JS frontend.
+
+🛠️ Modular Design – Clean separation of logic for easy scaling and feature addition.
 
 ## 📅 Progress Timeline
 

@@ -4,7 +4,7 @@ An **end-to-end AI voice assistant** built using FastAPI, modern frontend techno
 The bot can **listen**, **understand**, **remember conversations**, and **speak back** — just like a human!
 
 ---
-✨Features
+## ✨Features
 
 🎙️ Voice Input – Record speech and send it directly to the AI for processing.
 
